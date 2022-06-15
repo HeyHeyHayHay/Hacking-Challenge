@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Super Top Secret Soviet Encryption</h2>
+
+<p>Enter plain text and the key to encrypt.</p>
+
+Plain Text: <input type="text" id="plainText" size="200">
+<br><br>
+Key: <input type="number" id="key1">
+<br><br>
+<button onclick="encrypt()">Encrypt</button>
+
+<p id="cipherText"></p>
+
+
+<script>
+
+
+function encrypt() {
+  var plainText = document.getElementById('plainText').value;
+  var key1 = document.getElementById('key1').value;
+  plainText = plainText.toString();
+
+  let cipherText = getCharCodes(plainText);
+  cipherText = toLowerNumbers(cipherText);
+  cipherText = encryptionAction(cipherText, key1);
+  cipherText = toHigherNumbers(cipherText);
+  cipherText = arrayToString(cipherText);
+
+  document.getElementById('cipherText').innerHTML = cipherText;
+
+};
+
+//turn cipherText into plainText. input (string, number)
+function decrypt() {
+  var cipherText = document.getElementById('cipherText').value;
+  var key2 = document.getElementById('key').value;
+  cipherText = cipherText.toString();
+
+
+  let plainText = getCharCodes(cipherText);
+  plainText = toLowerNumbers(plainText);
+  plainText = decryptionAction(plainText, key2);
+  plainText = toHigherNumbers(plainText);
+  plainText = arrayToString(plainText);
+
+  document.getElementById('plainText').innerHTML = plainText;
+
+};
+
+//modulus that gives positives. input(number, number)
+function mod(n, m) {
+  return ((n % m) + m) % m;
+};
+
+//turn plainText into array of Character codes. input(string)
+function getCharCodes(plainText) {
+  var charCodes = [];
+
+  for (var i = 0; i < plainText.length; i++) {
+    charCodes.push(plainText.charCodeAt(i));
+  }
+
+  return charCodes;
+};
+
+//turn array of character codes into 0-26. input(array)
+function toLowerNumbers(array) {
+  var newArray = [];
+
+  for (var i = 0; i < array.length; i++) {
+    if(array[i] == 32) {
+
+      newArray.push(10);
+
+    } else if (array[i] < 58) {
+
+      newArray.push(array[i] - 48)
+
+    } else {
+
+      newArray.push(array[i] - 86);
+
+    };
+  };
+  return newArray;
+};
+
+//turn 0-26 back to character codes. input(array)
+function toHigherNumbers(array) {
+  var newArray = [];
+
+  for (var i = 0; i < array.length; i++) {
+    if(array[i] == 10) {
+
+      newArray.push(32);
+
+    } else if (array[i] < 10) {
+
+      newArray.push(array[i] + 48)
+
+    } else {
+
+      newArray.push(array[i] + 86);
+
+    };
+
+
+  };
+
+  return newArray;
+};
+
+//turn an array of character codes into string. input(array)
+function arrayToString(array) {
+  return array.map(function(code) {
+    return String.fromCharCode(code);
+  }).join('');
+}
+
+//turn plainText array into cipherText array. input(array, number)
+function encryptionAction(array, key) {
+  let keyString = key.toString();
+  let keyNumbers = getCharCodes(keyString);
+  var keyLength = keyNumbers.length;
+  var encryptedArray = [];
+  for (let i = 0; i < array.length; i++){
+    for (let j = 0; j < keyLength; j++){
+      if (i%keyLength==j) {
+
+        var newEntry = ( (array[i] + keyNumbers[j]) % 37 )
+        encryptedArray.push(newEntry);
+      };
+    };
+  };
+  return encryptedArray;
+};
+
+//turn cipherText array into plainText array. input(array, number)
+function decryptionAction(array, key) {
+  let keyString = key.toString();
+  let keyNumbers = getCharCodes(keyString);
+  var keyLength = keyNumbers.length;
+  var decryptedArray = [];
+  for (let i = 0; i < array.length; i++){
+
+    for (let j = 0; j < keyLength; j++){
+
+      if (i%keyLength==j) {
+
+        var newEntry =  mod(array[i] - keyNumbers[j], 37 )
+
+        decryptedArray.push(newEntry);
+
+      };
+    };
+  };
+  return decryptedArray;
+};
+
+
+</script>
+
+</body>
+</html
