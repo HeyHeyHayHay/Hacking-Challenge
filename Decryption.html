@@ -71,17 +71,7 @@ function getCharCodes(plainText) {
 const toLowerNumbers = a => a.map(b => b - 32);
 
 //turn 0-26 back to character codes. input(array)
-function toHigherNumbers(array) {
-  var newArray = [];
-
-  for (var i = 0; i < array.length; i++) {
-
-    newArray.push(array[i] + 32);
-
-  };
-
-  return newArray;
-};
+const toHigherNumbers = a => a.map(b => b + 32);
 
 //turn an array of character codes into string. input(array)
 function arrayToString(array) {
