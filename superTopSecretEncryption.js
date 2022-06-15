@@ -1,7 +1,7 @@
 
 
 //EXAMPLE
-  let examplePlainText = "0123456789 abcdefghijklmnopqrstuvwxyz";
+  let examplePlainText = "0123456789 ABC abcdefghijklmnopqrstuvwxyz";
   let exampleKey = 3095;
 
   //encrypt the example
@@ -56,19 +56,9 @@ function toLowerNumbers(array) {
   var newArray = [];
 
   for (var i = 0; i < array.length; i++) {
-    if(array[i] == 32) {
 
-      newArray.push(10);
+    newArray.push(array[i] - 32);
 
-    } else if (array[i] < 58) {
-
-      newArray.push(array[i] - 48)
-
-    } else {
-
-      newArray.push(array[i] - 86);
-
-    };
   };
   return newArray;
 };
@@ -78,20 +68,8 @@ function toHigherNumbers(array) {
   var newArray = [];
 
   for (var i = 0; i < array.length; i++) {
-    if(array[i] == 10) {
 
-      newArray.push(32);
-
-    } else if (array[i] < 10) {
-
-      newArray.push(array[i] + 48)
-
-    } else {
-
-      newArray.push(array[i] + 86);
-
-    };
-
+    newArray.push(array[i] + 32);
 
   };
 
@@ -115,7 +93,7 @@ function encryptionAction(array, key) {
     for (let j = 0; j < keyLength; j++){
       if (i%keyLength==j) {
 
-        var newEntry = ( (array[i] + keyNumbers[j]) % 37 )
+        var newEntry = ( (array[i] + (10*keyNumbers[j])) % 95 )
         encryptedArray.push(newEntry);
       };
     };
@@ -135,7 +113,7 @@ function decryptionAction(array, key) {
 
       if (i%keyLength==j) {
 
-        var newEntry =  mod(array[i] - keyNumbers[j], 37 )
+        var newEntry =  mod(array[i] - (10*keyNumbers[j]), 95 )
 
         decryptedArray.push(newEntry);
 
