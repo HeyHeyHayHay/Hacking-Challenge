@@ -2,9 +2,8 @@ Instructions for Super Top Secret Ecryption
 
 Use the html files to do Encryption or Decryption. Web browsers can open html files. Enter your text and key and press the button.
 
-Or use the JavaScript file (superTopSecretEncryption) if you need to make your own modifications to the code. 
-JavaScript can be opened in a text editor online or downloaded.
-To run JavaScript you either need a runtime environment such as node.js or use an online resource.
+Use the JavaScript or Python file (superTopSecretEncryption) if you need to make your own modifications to the code. 
+To edit and run you code you might need to download some software or use a website online.
 
 Every coding file should have some comments explaining the function.
 The superTopSecretEncryption contains an example encryption and decryption at the beginning
