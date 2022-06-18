@@ -35,6 +35,8 @@ function decrypt(cipherText, key) {
   return plainText;
 };
 
+//The rest of these functions are subset functions of encrypt and decrypt
+
 //modulus that gives positives. input(number, number)
 function mod(n, m) {
   return ((n % m) + m) % m;
@@ -95,6 +97,7 @@ function encryptionAction(array, key) {
 
         var newEntry = ( (array[i] + (10*keyNumbers[j])) % 95 )
         encryptedArray.push(newEntry);
+        
       };
     };
   };
