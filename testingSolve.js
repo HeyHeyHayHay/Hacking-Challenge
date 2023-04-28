@@ -1,16 +1,22 @@
 
+//solve it
 
-//EXAMPLE
-  let examplePlainText = "0123456789 ABC abcdefghijklmnopqrstuvwxyz";
-  let exampleKey = 3095;
 
-  //encrypt the example
-    let exampleCipherText = encrypt(examplePlainText, exampleKey);
-    console.log(exampleCipherText);
+let todaysmessage = "b~f`);q~hkVgR)dS6/$-vkj=/g__,9p:";
 
-  //decrypt the example
-    let decryptedExampleCipherText = decrypt(exampleCipherText, exampleKey);
-    console.log(decryptedExampleCipherText);
+for (let i = 100000; i < 999999; i++) {
+
+  let message = decrypt(todaysmessage,i);
+    if ( message.charAt(0)=="S" && message.charAt(1)=="e" && message.charAt(2)=="p" && message.charAt(3)=="t" && message.charAt(4)=="e" && message.charAt(5)=="m" ) {
+        console.log(message);
+    };
+    if (i % 100000 == 0){
+      console.log(i);
+    };
+
+};
+
+
 
 
 //FUNCTIONS
